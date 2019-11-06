@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Domain;
 
 namespace Persistence
@@ -12,6 +11,8 @@ namespace Persistence
 
         public DbSet<Value> Values {get; set;}
         public DbSet<QBContactModel> Contacts {get; set;}
+
+        public DbSet<ActivityModel> Activities {get; set;}
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -41,6 +42,10 @@ namespace Persistence
                 .IsRequired()
                 .HasMaxLength(50);
 
+
+            builder.Entity<ActivityModel>()
+                .ToTable("Activity")
+                .HasKey(x => x.Id);
         }
 
 
